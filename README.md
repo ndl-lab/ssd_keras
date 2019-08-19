@@ -1,8 +1,32 @@
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
-# A port of [SSD: Single Shot MultiBox Detector](https://github.com/weiliu89/caffe/tree/ssd) to [Keras](https://keras.io) framework.
-For more details, please refer to [arXiv paper](http://arxiv.org/abs/1512.02325).
-For forward pass for 300x300 model, please, follow `SSD.ipynb` for examples. For training procedure for 300x300 model, please, follow `SSD_training.ipynb` for examples. Moreover, in `testing_utils` folder there is a useful script to test `SSD` on video or on camera input.
+このリポジトリには、見開きのページをのど元で分割するための学習プログラムと推論プログラムが含まれています。
+このプログラムは以下のリポジトリを改変して作成しています。
 
-Weights are ported from the original models and are available [here](https://mega.nz/#F!7RowVLCL!q3cEVRK9jyOSB9el3SssIA). You need `weights_SSD300.hdf5`, `weights_300x300_old.hdf5` is for the old version of architecture with 3x3 convolution for `pool6`.
+[rykov8's repo](https://github.com/rykov8/ssd_keras)
 
-This code was tested with `Keras` v1.2.2, `Tensorflow` v1.0.0, `OpenCV` v3.1.0-dev
+# inference
+inference_inputディレクトリにのど元を分割したい画像を入れ、inference.pyを実行する。
+
+inference_outputディレクトリに分割後の画像が出力される。
+
+
+# Training
+
+1.学習ファイルの準備
+学習させたい画像ファイルをtraining/imgに、
+のど位置情報をtraining/image.tsvにそれぞれ用意しておく。
+※例では
+(ファイル名)\t(中心からのずれの割合)
+としましたが、tsvの形式に応じてtraining/make_pkl_for_page.pyをカスタマイズしてください。
+
+training/size_convertion.py
+
+
+で画像のサイズを300*300に変換しておく
+
+2.pklの生成
+make_pkl_for_page.pyを実行し、page_layout.pklを生成しておく。
+
+
+3.学習
+train.pyを実行し、学習を開始する。
+checkpointsディレクトリに学習済weightsファイルが生成される。
