@@ -4,6 +4,9 @@
 [rykov8's repo](https://github.com/rykov8/ssd_keras)
 
 # inference
+学習済モデルは以下で公開している。
+https://lab.ndl.go.jp/dataset/pagedivide/model.zip
+
 inference_inputディレクトリにのど元を分割したい画像を入れ、inference.pyを実行する。
 
 inference_outputディレクトリに分割後の画像が出力される。
